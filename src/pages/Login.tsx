@@ -9,6 +9,8 @@ export default function Login() {
   });
 
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (e: any) => {
@@ -20,23 +22,31 @@ export default function Login() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    console.log("📤 Envoi des données :", formData);
 
     try {
       const msg = await loginUser(formData);
+      console.log("✅ Réponse backend OK");
+
       setMessage(msg);
 
-      // 🔄 redirection après login
       setTimeout(() => {
         navigate("/");
       }, 1000);
 
     } catch (error: any) {
-      setMessage(error.message);
+      console.error("❌ ERREUR LOGIN :", error);
+      setMessage(error.message || "Erreur serveur");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black text-white px-4">
+    <div className="relative z-50 flex items-center justify-center min-h-screen bg-black text-white px-4">
       <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
 
         <h2 className="text-2xl font-black text-center mb-6">
@@ -62,8 +72,11 @@ export default function Login() {
             required
           />
 
-          <button className="w-full bg-red-600 hover:bg-red-700 transition p-3 rounded font-bold uppercase">
-            Se connecter
+          <button
+            disabled={loading}
+            className="w-full bg-red-600 hover:bg-red-700 transition p-3 rounded font-bold uppercase disabled:opacity-50"
+          >
+            {loading ? "Connexion..." : "Se connecter"}
           </button>
         </form>
 
@@ -72,6 +85,18 @@ export default function Login() {
             {message}
           </p>
         )}
+
+        {/* 🔗 REGISTER */}
+        <p className="text-center text-sm text-gray-400 mt-4">
+          Pas encore de compte ?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            className="text-red-500 cursor-pointer hover:underline"
+          >
+            S'inscrire
+          </span>
+        </p>
+
       </div>
     </div>
   );

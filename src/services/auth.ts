@@ -4,7 +4,7 @@ export const registerUser = async (formData: {
   email: string;
   password: string;
 }) => {
-  const response = await fetch("http://localhost:5000/register", {
+  const response = await fetch("/api/register", { // ✅ CHANGÉ
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,10 @@ export const loginUser = async (formData: {
   email: string;
   password: string;
 }) => {
-  const response = await fetch("http://localhost:5000/login", {
+
+  console.log("🔥 AUTH FILE UTILISÉ");
+
+  const response = await fetch("/api/login", { // ✅ CHANGÉ
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -32,7 +32,6 @@ export default function Register() {
     setLoading(true);
     setMessage("");
 
-    // ✅ VALIDATION SIMPLE
     if (formData.password.length < 6) {
       setMessage("Mot de passe trop court (min 6 caractères)");
       setLoading(false);
@@ -43,19 +42,17 @@ export default function Register() {
       const data = await registerUser(formData);
       setMessage(data);
 
-      // 🔄 REDIRECTION APRÈS SUCCÈS
       setTimeout(() => {
         navigate("/login");
       }, 1500);
 
     } catch (error: any) {
-  console.log(error);
-  setMessage(error.message);
-}
+      setMessage(error.message);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center bg-black text-white px-4">
+    <div className="flex items-center justify-center min-h-screen bg-black text-white px-4">
       <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
 
         <h2 className="text-2xl font-black text-center mb-6">
@@ -70,7 +67,7 @@ export default function Register() {
             placeholder="Nom"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-black border border-white/10 focus:border-red-600 outline-none"
+            className="w-full p-3 rounded bg-black border border-white/10 focus:border-red-600 outline-none text-white"
             required
           />
 
@@ -80,7 +77,7 @@ export default function Register() {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-black border border-white/10 focus:border-red-600 outline-none"
+            className="w-full p-3 rounded bg-black border border-white/10 focus:border-red-600 outline-none text-white"
             required
           />
 
@@ -90,7 +87,7 @@ export default function Register() {
             placeholder="Mot de passe"
             value={formData.password}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-black border border-white/10 focus:border-red-600 outline-none"
+            className="w-full p-3 rounded bg-black border border-white/10 focus:border-red-600 outline-none text-white"
             required
           />
 
@@ -108,6 +105,18 @@ export default function Register() {
             {message}
           </p>
         )}
+
+        {/* 🔥 AJOUT */}
+        <p className="text-center text-sm text-gray-400 mt-4">
+          Déjà un compte ?{" "}
+          <span
+            onClick={() => navigate("/login")}
+            className="text-red-500 cursor-pointer hover:underline"
+          >
+            Se connecter
+          </span>
+        </p>
+
       </div>
     </div>
   );

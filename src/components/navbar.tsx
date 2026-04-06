@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ShoppingCart, User } from 'lucide-react';
 import { useCart } from '../Context/Contextcard';
 
 const navigation = [
-  { label: 'Accueil', path: '/' },
-  { label: 'Boutique', path: '/product' },
-  { label: 'À Propos', path: '/about' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Accueil', path: '#home' },
+  { label: 'Boutique', path: '#product' },
+  { label: 'À Propos', path: '#about' },
+  { label: 'Contact', path: '#contact' },
 ];
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
 
@@ -19,27 +19,46 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 🔐 Vérifie si user connecté
+  // 🔐 Vérifie si connecté
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLogged(!!token);
   }, [location]);
 
-  // 🎯 Scroll effect
+  // 🎯 effet scroll navbar
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 📱 Fermer menu mobile sur navigation
+  // 📱 fermer menu mobile
   useEffect(() => setIsOpen(false), [location]);
 
-  // 🔓 Logout
+  // 🔓 logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
     navigate("/login");
+  };
+
+  // 🔥 SCROLL INTELLIGENT (clé du problème)
+  const handleScrollTo = (id: string) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+
+      setTimeout(() => {
+        const element = document.querySelector(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -62,19 +81,13 @@ const Navbar: React.FC = () => {
         {/* NAVIGATION DESKTOP */}
         <div className="hidden md:flex items-center space-x-8">
           {navigation.map((item) => (
-            <NavLink
+            <button
               key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `text-[11px] font-black uppercase tracking-[0.2em] transition-all ${
-                  isActive
-                    ? 'text-red-600 border-b-2 border-red-600 pb-1'
-                    : 'text-slate-400 hover:text-white'
-                }`
-              }
+              onClick={() => handleScrollTo(item.path)}
+              className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-all"
             >
               {item.label}
-            </NavLink>
+            </button>
           ))}
         </div>
 
@@ -135,20 +148,16 @@ const Navbar: React.FC = () => {
       >
         <div className="flex flex-col p-8 space-y-6">
           {navigation.map((item) => (
-            <NavLink
+            <button
               key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `text-xl font-black uppercase italic tracking-tighter transition-colors ${
-                  isActive ? 'text-red-600' : 'text-white'
-                }`
-              }
+              onClick={() => handleScrollTo(item.path)}
+              className="text-xl font-black uppercase italic tracking-tighter text-white"
             >
               {item.label}
-            </NavLink>
+            </button>
           ))}
 
-          {/* 🔐 LOGIN / LOGOUT MOBILE */}
+          {/* LOGIN MOBILE */}
           {isLogged ? (
             <button
               onClick={handleLogout}
