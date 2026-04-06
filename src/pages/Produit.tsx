@@ -32,8 +32,9 @@ import PS5 from "../assets/PS5.jpg";
 import PS4PRO from "../assets/PS4PRO.jpg";
 import Nintendoswitch from "../assets/Nintendoswitch.jpg";
 import SteamDeck from "../assets/SteamDeck.jpg";
-import XboxSeriesS from "../assets/xboxSerieS.jpg";  // vérifier majuscule S
-import XboxSeriesX from "../assets/xboxserieX.jpg";  // vérifier minuscule s
+import XboxSeriesS from "../assets/xboxSerieS.jpg"; 
+import XboxSeriesX from "../assets/xboxserieX.jpg";
+import tapissouris from "../assets/tapissouris.jpg"; // Importation ajoutée ici
 
 // --- DONNÉES PRODUITS ---
 const CATEGORIES = {
@@ -79,7 +80,7 @@ const CATEGORIES = {
     { id: 36, name: 'Souris Logitech G Pro Wireless', price: 20000, image: Souris },
     { id: 37, name: 'Casque Astro A50 Wireless', price: 25000, image: Casque },
     { id: 38, name: 'Micro Shure SM7B Pro', price: 20000, image: Micro },
-    { id: 39, name: 'Tapis XXL Pro', price: 7000, image: 'https://via.placeholder.com/200' },
+    { id: 39, name: 'Tapis XXL Pro', price: 7000, image: tapissouris },
     { id: 40, name: 'Bureau Gaming Motorisé', price: 40000, image: BureauGaming },
   ]
 };
