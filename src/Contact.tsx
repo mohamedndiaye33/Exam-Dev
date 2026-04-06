@@ -1,7 +1,6 @@
 import { Mail, Phone, MapPin, Clock3, MessageSquare } from 'lucide-react'
-import { SiInstagram, SiFacebook, SiWhatsapp } from 'react-icons/si'
 
-const Contact = () => {
+function Contact() {
   return (
     <section className="min-h-[calc(100vh-5rem)] rounded-[2rem] border border-red-600/30 bg-[#0f0f0f]/95 p-8 shadow-[0_0_80px_rgba(255,0,0,0.18)] backdrop-blur-xl">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -9,10 +8,10 @@ const Contact = () => {
           <div className="space-y-4">
             <span className="text-sm uppercase tracking-[0.35em] text-red-400">Nous contacter</span>
             <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
-              Contactez notre service client.
+              Un support dédié pour votre boutique gaming.
             </h1>
             <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-              Pour toute question, commande ou support, utilisez l’un de nos canaux officiels. Nous répondons rapidement aux demandes e-commerce.
+              Pour toute question commerciale, partenariat ou assistance produit, envoyez-nous un message et nous revenons vers vous rapidement.
             </p>
           </div>
 
@@ -22,21 +21,21 @@ const Contact = () => {
                 <Mail className="h-6 w-6" />
               </div>
               <h2 className="text-xl font-semibold text-white">Email support</h2>
-              <p className="mt-3 text-slate-300">cheikhouseck734@gmail.com</p>
+              <p className="mt-3 text-slate-300">support@noirverse-shop.com</p>
             </article>
             <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
                 <Phone className="h-6 w-6" />
               </div>
               <h2 className="text-xl font-semibold text-white">Téléphone</h2>
-              <p className="mt-3 text-slate-300">70 806 24 64</p>
+              <p className="mt-3 text-slate-300">+33 1 23 45 67 89</p>
             </article>
             <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
                 <MapPin className="h-6 w-6" />
               </div>
               <h2 className="text-xl font-semibold text-white">Adresse</h2>
-              <p className="mt-3 text-slate-300">Dakar, Senegal</p>
+              <p className="mt-3 text-slate-300">Paris, France</p>
             </article>
             <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
@@ -45,48 +44,6 @@ const Contact = () => {
               <h2 className="text-xl font-semibold text-white">Horaires</h2>
               <p className="mt-3 text-slate-300">Lun - Ven : 9h00 - 19h00</p>
             </article>
-          </div>
-
-          <div className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
-            <div className="flex items-center gap-3">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
-                <SiInstagram className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-red-300">Réseaux sociaux</p>
-                <p className="text-lg font-semibold text-white">Suivez-nous pour les offres, nouveautés et promos.</p>
-              </div>
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <a
-                href="https://www.instagram.com/noirverse_shop"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-red-400/60 hover:bg-[#171717]"
-              >
-                <SiInstagram className="h-5 w-5 text-pink-400" />
-                Instagram
-              </a>
-              <a
-                href="https://www.facebook.com/noirverse-shop"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-blue-400/60 hover:bg-[#171717]"
-              >
-                <SiFacebook className="h-5 w-5 text-blue-400" />
-                Facebook
-              </a>
-              <a
-                href="https://wa.me/216708062464"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-green-400/60 hover:bg-[#171717]"
-              >
-                <SiWhatsapp className="h-5 w-5 text-green-400" />
-                WhatsApp
-              </a>
-            </div>
           </div>
         </div>
 
@@ -139,4 +96,4 @@ const Contact = () => {
   )
 }
 
-export default Contact;
+export default Contact
