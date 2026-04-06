@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation, Link } from 'react-router-dom';
+import { NavLink, useLocation, Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ShoppingCart, User } from 'lucide-react';
 import { useCart } from '../Context/Contextcard';
 
@@ -13,17 +13,34 @@ const navigation = [
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   const { totalItems } = useCart();
   const location = useLocation();
+  const navigate = useNavigate();
 
+  // 🔐 Vérifie si user connecté
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLogged(!!token);
+  }, [location]);
+
+  // 🎯 Scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 📱 Fermer menu mobile sur navigation
   useEffect(() => setIsOpen(false), [location]);
+
+  // 🔓 Logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLogged(false);
+    navigate("/login");
+  };
 
   return (
     <nav
@@ -64,16 +81,26 @@ const Navbar: React.FC = () => {
         {/* ACTIONS */}
         <div className="flex items-center gap-6">
 
-          {/* LOGIN → REGISTER */}
-          <Link
-            to="/register"
-            className="hidden sm:flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-widest hover:text-red-600 transition-colors"
-          >
-            <User size={18} />
-            <span>Login</span>
-          </Link>
+          {/* 🔐 LOGIN / LOGOUT */}
+          {isLogged ? (
+            <button
+              onClick={handleLogout}
+              className="hidden sm:flex items-center gap-2 text-green-500 font-black text-[10px] uppercase tracking-widest hover:text-red-600 transition-colors"
+            >
+              <User size={18} />
+              <span>Logout</span>
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="hidden sm:flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-widest hover:text-red-600 transition-colors"
+            >
+              <User size={18} />
+              <span>Login</span>
+            </Link>
+          )}
 
-          {/* PANIER */}
+          {/* 🛒 PANIER */}
           <Link
             to="/cart"
             className="relative p-2 bg-white/5 rounded-full border border-white/10 hover:border-red-600 transition-all group"
@@ -90,7 +117,7 @@ const Navbar: React.FC = () => {
             )}
           </Link>
 
-          {/* MENU MOBILE */}
+          {/* 📱 MENU MOBILE */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-white p-2"
@@ -100,7 +127,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* MENU MOBILE */}
+      {/* 📱 MENU MOBILE */}
       <div
         className={`absolute top-full left-0 w-full bg-black border-b border-red-600/20 transition-all duration-300 ease-in-out overflow-hidden md:hidden ${
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
@@ -121,13 +148,22 @@ const Navbar: React.FC = () => {
             </NavLink>
           ))}
 
-          {/* LOGIN MOBILE */}
-          <Link
-            to="/register"
-            className="text-white font-black uppercase"
-          >
-            Login
-          </Link>
+          {/* 🔐 LOGIN / LOGOUT MOBILE */}
+          {isLogged ? (
+            <button
+              onClick={handleLogout}
+              className="text-green-500 font-black uppercase"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="text-white font-black uppercase"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>

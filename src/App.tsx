@@ -6,6 +6,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Layout from "./layouts/Layout";
+import Login from "./pages/Login";
 import { CartProvider } from './Context/Contextcard';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           {/* ✅ TOUT PASSE PAR LE LAYOUT */}
           <Route element={<Layout />}>
+          <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route path="/product" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
