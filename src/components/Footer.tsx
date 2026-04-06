@@ -48,7 +48,7 @@ export default function Footer() {
           <ul className="space-y-2 text-white/70 text-sm">
             <li>Email: <a href="mailto:contact@gamingnation.com" className="hover:text-red-600 transition-colors">contact@gamingnation.com</a></li>
             <li>Téléphone: <a href="tel:+221770000000" className="hover:text-red-600 transition-colors">+221 77 000 00 00</a></li>
-            <li>Adresse: Dakar, Sénégal</li>
+            <li>Adresse: Sénégal</li>
           </ul>
         </div>
       </div>
