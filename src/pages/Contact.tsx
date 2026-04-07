@@ -1,139 +1,151 @@
 import { Mail, Phone, MapPin, Clock3, MessageSquare } from 'lucide-react'
 import { SiInstagram, SiFacebook, SiWhatsapp } from 'react-icons/si'
+import { useState } from "react";
 
 const Contact = () => {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: any) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const phone = "221774944730";
+
+    const text = `Bonjour, je vous contacte depuis votre site :
+
+Nom: ${formData.name}
+Email: ${formData.email}
+
+Message:
+${formData.message}`;
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+  };
+
   return (
     <section className="min-h-[calc(100vh-5rem)] rounded-[2rem] border border-red-600/30 bg-[#0f0f0f]/95 p-8 shadow-[0_0_80px_rgba(255,0,0,0.18)] backdrop-blur-xl">
+      
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+
+        {/* INFOS */}
         <div className="space-y-6 rounded-[2rem] border border-red-600/20 bg-[#141414]/90 p-8 shadow-[0_0_60px_rgba(255,0,0,0.16)]">
+
           <div className="space-y-4">
             <span className="text-sm uppercase tracking-[0.35em] text-red-400">Nous contacter</span>
-            <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
-              Contactez notre service client.
+            <h1 className="text-4xl font-black text-white">
+              Contactez notre service client
             </h1>
-            <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-              Pour toute question, commande ou support, utilisez l’un de nos canaux officiels. Nous répondons rapidement aux demandes e-commerce.
-            </p>
           </div>
 
+          {/* CARTES */}
           <div className="grid gap-4 sm:grid-cols-2">
-            <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
-                <Mail className="h-6 w-6" />
-              </div>
-              <h2 className="text-xl font-semibold text-white">Email support</h2>
-              <p className="mt-3 text-slate-300">nexus_gaming2.0@gmail.com</p>
-            </article>
-            <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
-                <Phone className="h-6 w-6" />
-              </div>
-              <h2 className="text-xl font-semibold text-white">Téléphone</h2>
-              <p className="mt-3 text-slate-300">77 494 47 30 </p>
-            </article>
-            <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
-                <MapPin className="h-6 w-6" />
-              </div>
-              <h2 className="text-xl font-semibold text-white">Adresse</h2>
-              <p className="mt-3 text-slate-300">Dakar, Senegal</p>
-            </article>
-            <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
-                <Clock3 className="h-6 w-6" />
-              </div>
-              <h2 className="text-xl font-semibold text-white">Horaires</h2>
-              <p className="mt-3 text-slate-300">Lun - Ven : 9h00 - 19h00</p>
-            </article>
+
+            <div className="p-4 bg-black rounded">
+              <Mail className="text-red-500" />
+              <p className="text-white">nexus_gaming2.0@gmail.com</p>
+            </div>
+
+            <div className="p-4 bg-black rounded">
+              <Phone className="text-red-500" />
+              <p className="text-white">77 494 47 30</p>
+            </div>
+
+            <div className="p-4 bg-black rounded">
+              <MapPin className="text-red-500" />
+              <p className="text-white">Dakar, Sénégal</p>
+            </div>
+
+            <div className="p-4 bg-black rounded">
+              <Clock3 className="text-red-500" />
+              <p className="text-white">Lun - Ven : 9h - 19h</p>
+            </div>
+
           </div>
 
-          <div className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
-            <div className="flex items-center gap-3">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
-                <SiInstagram className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-red-300">Réseaux sociaux</p>
-                <p className="text-lg font-semibold text-white">Suivez-nous pour les offres, nouveautés et promos.</p>
-              </div>
-            </div>
+          {/* RÉSEAUX SOCIAUX */}
+          <div className="grid gap-3 sm:grid-cols-3 mt-6">
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <a
-                href="https://www.instagram.com/direct/inbox/t/17841400008460056/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-red-400/60 hover:bg-[#171717]"
-              >
-                <SiInstagram className="h-5 w-5 text-pink-400" />
-                Instagram
-              </a>
-              <a
-                href="https://web.facebook.com/?_rdc=1&_rdr#"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-blue-400/60 hover:bg-[#171717]"
-              >
-                <SiFacebook className="h-5 w-5 text-blue-400" />
-                Facebook
-              </a>
-              <a
-                href="https://web.whatsapp.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-green-400/60 hover:bg-[#171717]"
-              >
-                <SiWhatsapp className="h-5 w-5 text-green-400" />
-                WhatsApp
-              </a>
-            </div>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 p-3 bg-black rounded text-white hover:border-red-500 border"
+            >
+              <SiInstagram className="text-pink-400" />
+              Instagram
+            </a>
+
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 p-3 bg-black rounded text-white hover:border-blue-500 border"
+            >
+              <SiFacebook className="text-blue-400" />
+              Facebook
+            </a>
+
+            <a
+              href="https://wa.me/221774944730"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 p-3 bg-black rounded text-white hover:border-green-500 border"
+            >
+              <SiWhatsapp className="text-green-400" />
+              WhatsApp
+            </a>
+
           </div>
         </div>
 
-        <form className="rounded-[2rem] border border-red-600/20 bg-[#141414]/90 p-8 shadow-[0_0_60px_rgba(255,0,0,0.16)]">
-          <div className="mb-8 flex items-center gap-4">
-            <div className="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-red-500/10 text-red-300">
-              <MessageSquare className="h-7 w-7" />
-            </div>
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-red-300">Envoyez un message</p>
-              <p className="text-2xl font-bold text-white">Prêt à discuter ?</p>
-            </div>
+        {/* FORMULAIRE */}
+        <form onSubmit={handleSubmit} className="bg-[#141414] p-8 rounded">
+
+          <div className="flex items-center gap-2 mb-4">
+            <MessageSquare className="text-red-500" />
+            <p className="text-white font-bold">Envoyer un message</p>
           </div>
 
-          <div className="space-y-6">
-            <label className="block">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Nom</span>
-              <input
-                type="text"
-                placeholder="Votre nom"
-                className="mt-3 w-full rounded-3xl border border-red-600/20 bg-[#0a0a0a] px-4 py-4 text-white outline-none transition focus:border-red-500/80"
-              />
-            </label>
-            <label className="block">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Email</span>
-              <input
-                type="email"
-                placeholder="contact@exemple.com"
-                className="mt-3 w-full rounded-3xl border border-red-600/20 bg-[#0a0a0a] px-4 py-4 text-white outline-none transition focus:border-red-500/80"
-              />
-            </label>
-            <label className="block">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Message</span>
-              <textarea
-                rows={6}
-                placeholder="Décrivez votre besoin..."
-                className="mt-3 w-full rounded-3xl border border-red-600/20 bg-[#0a0a0a] px-4 py-4 text-white outline-none transition focus:border-red-500/80"
-              />
-            </label>
-            <button
-              type="submit"
-              className="w-full rounded-full bg-red-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-red-500"
-            >
-              Envoyer le message
-            </button>
-          </div>
+          <input
+            name="name"
+            placeholder="Nom"
+            onChange={handleChange}
+            className="w-full p-3 mb-3 bg-black text-white"
+          />
+
+          <input
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            className="w-full p-3 mb-3 bg-black text-white"
+          />
+
+          <textarea
+            name="message"
+            placeholder="Message"
+            onChange={handleChange}
+            className="w-full p-3 mb-3 bg-black text-white"
+          />
+
+          <button className="w-full bg-red-600 p-3 text-white">
+            Envoyer sur WhatsApp
+          </button>
+
         </form>
+
       </div>
     </section>
   )
