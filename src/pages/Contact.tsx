@@ -60,7 +60,7 @@ const Contact = () => {
 
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               <a
-                href="https://www.instagram.com/noirverse_shop"
+                href="https://www.instagram.com/direct/inbox/t/17841400008460056/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-red-400/60 hover:bg-[#171717]"
@@ -69,7 +69,7 @@ const Contact = () => {
                 Instagram
               </a>
               <a
-                href="https://www.facebook.com/noirverse-shop"
+                href="https://web.facebook.com/?_rdc=1&_rdr#"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-blue-400/60 hover:bg-[#171717]"
@@ -78,7 +78,7 @@ const Contact = () => {
                 Facebook
               </a>
               <a
-                href="https://wa.me/216708062464"
+                href="https://web.whatsapp.com/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 rounded-3xl border border-red-600/20 bg-[#0f0f0f] px-4 py-4 text-slate-200 transition hover:border-green-400/60 hover:bg-[#171717]"
