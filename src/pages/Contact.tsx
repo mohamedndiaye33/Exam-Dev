@@ -22,14 +22,14 @@ const Contact = () => {
                 <Mail className="h-6 w-6" />
               </div>
               <h2 className="text-xl font-semibold text-white">Email support</h2>
-              <p className="mt-3 text-slate-300">cheikhouseck734@gmail.com</p>
+              <p className="mt-3 text-slate-300">nexus_gaming2.0@gmail.com</p>
             </article>
             <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
                 <Phone className="h-6 w-6" />
               </div>
               <h2 className="text-xl font-semibold text-white">Téléphone</h2>
-              <p className="mt-3 text-slate-300">70 806 24 64</p>
+              <p className="mt-3 text-slate-300">77 494 47 30 </p>
             </article>
             <article className="rounded-[1.75rem] border border-red-600/20 bg-[#0f0f0f] p-6">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-300">
