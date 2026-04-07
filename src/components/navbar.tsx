@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
           {/* 🛒 PANIER */}
           <Link
             to="/cart"
-            className="relative p-2 bg-white/5 rounded-full border border-white/10 hover:border-red-600 transition-all group"
+            className="relative p-2 bg-red-600/5 rounded-full border border-red-600/10 hover:border-red-600 transition-all group"
           >
             <ShoppingCart
               size={20}
