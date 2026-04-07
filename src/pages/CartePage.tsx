@@ -2,7 +2,30 @@ import { useCart } from '../Context/Contextcard';
 
 const CartPage = () => {
   const { cart, totalItems, clearCart } = useCart();
-  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  // ✅ FONCTION WHATSAPP
+  const handleOrder = () => {
+    const phone = "221774944730";
+
+    const products = cart.map(item => {
+      return `• ${item.name} x${item.quantity} - ${item.price.toLocaleString()} FCFA`;
+    }).join("\n");
+
+    const text = `Bonjour, je souhaite commander :
+
+${products}
+
+Total: ${totalPrice.toLocaleString()} FCFA`;
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-10 text-white min-h-screen pt-24">
@@ -33,15 +56,22 @@ const CartPage = () => {
                   </p>
                 </div>
               </div>
-              <p className="font-black text-lg italic">{(item.price * item.quantity).toLocaleString()} FCFA</p>
+              <p className="font-black text-lg italic">
+                {(item.price * item.quantity).toLocaleString()} FCFA
+              </p>
             </div>
           ))}
 
           <div className="mt-12 bg-red-600 p-8 rounded-md flex flex-col sm:flex-row justify-between items-center shadow-xl shadow-red-900/30">
             <div className="mb-4 sm:mb-0">
-              <p className="text-[10px] font-black uppercase text-white/80 tracking-widest">Montant Total</p>
-              <p className="text-4xl font-black italic">{totalPrice.toLocaleString()} FCFA</p>
+              <p className="text-[10px] font-black uppercase text-white/80 tracking-widest">
+                Montant Total
+              </p>
+              <p className="text-4xl font-black italic">
+                {totalPrice.toLocaleString()} FCFA
+              </p>
             </div>
+
             <div className="flex gap-4">
               <button
                 onClick={clearCart}
@@ -49,9 +79,15 @@ const CartPage = () => {
               >
                 Vider le panier
               </button>
-              <button className="bg-white text-black px-10 py-4 font-black uppercase italic text-sm hover:bg-black hover:text-white transition-all shadow-lg active:scale-95">
-                Commander maintenant
+
+              {/* 🔥 BOUTON WHATSAPP */}
+              <button
+                onClick={handleOrder}
+                className="bg-green-600 text-white px-10 py-4 font-black uppercase italic text-sm hover:bg-green-700 transition-all shadow-lg active:scale-95"
+              >
+                Commander sur WhatsApp
               </button>
+
             </div>
           </div>
         </div>
