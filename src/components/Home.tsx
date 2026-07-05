@@ -55,7 +55,7 @@ export default function Home() {
               onClick={scrollToBoutique}
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-sm font-black uppercase italic tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-950/50 text-center cursor-pointer"
             >
-              Explorer la boutique
+              Explorer notre boutique
             </a>
 
             <a 
